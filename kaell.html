@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Love Room</title>
+
+<style>
+:root{
+--pink1:#ff758c;
+--pink2:#ff7eb3;
+--primary:#ff2e63;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+
+body{
+font-family:'Segoe UI',sans-serif;
+background:linear-gradient(135deg,var(--pink1),var(--pink2));
+color:white;
+overflow-x:hidden;
+}
+
+.slide{
+display:none;
+min-height:100vh;
+padding:40px 20px;
+text-align:center;
+animation:fade 0.8s ease;
+}
+.slide.active{display:block}
+
+@keyframes fade{
+from{opacity:0;transform:translateY(20px)}
+to{opacity:1;transform:translateY(0)}
+}
+
+h1,h2{margin-bottom:20px;text-shadow:0 0 15px rgba(255,255,255,0.8)}
+
+button{
+padding:10px 15px;
+margin:6px;
+border:none;
+border-radius:12px;
+cursor:pointer;
+font-weight:bold;
+transition:0.3s;
+}
+button:hover{transform:scale(1.08)}
+
+.next{
+background:white;
+color:var(--primary);
+}
+
+input,textarea{
+width:85%;
+max-width:400px;
+padding:10px;
+margin:8px auto;
+display:block;
+border-radius:10px;
+border:none;
+}
+
+.message{min-height:30px;margin-top:10px;font-style:italic}
+.warning{color:yellow;margin-top:10px}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(60px,1fr));
+gap:10px;
+max-width:650px;
+margin:0 auto;
+}
+
+.gift{
+background:#b3002d;
+height:70px;
+border-radius:12px;
+display:flex;
+align-items:center;
+justify-content:center;
+cursor:pointer;
+font-size:26px;
+transition:0.4s;
+}
+.gift.open{
+background:white;
+color:#b3002d;
+font-size:11px;
+padding:5px;
+}
+
+.stretch{
+background:white;
+color:var(--primary);
+margin:10px auto;
+padding:12px;
+border-radius:12px;
+width:90%;
+max-width:500px;
+cursor:pointer;
+}
+
+.paper{
+background:white;
+color:var(--primary);
+padding:25px;
+margin:20px auto;
+width:90%;
+max-width:650px;
+border-radius:20px;
+box-shadow:0 0 25px rgba(0,0,0,0.2);
+}
+
+.floating{
+position:fixed;
+font-size:55px;
+font-weight:900;
+animation:floatUp 3s linear forwards;
+pointer-events:none;
+}
+
+@keyframes floatUp{
+0%{transform:translateY(0);opacity:1}
+100%{transform:translateY(-700px);opacity:0}
+}
+
+.bigFlower{
+font-size:190px;
+margin-top:40px;
+animation:pop 1s ease;
+}
+.bigText{
+font-size:42px;
+font-weight:900;
+margin-top:20px;
+}
+@keyframes pop{
+0%{transform:scale(0)}
+100%{transform:scale(1)}
+}
+</style>
+</head>
+
+<body>
+
+<!-- SLIDE 1 -->
+<div class="slide active">
+<h1>💖 Our Digital Love Room 💖</h1>
+<p>Jawab dulu ya baru Masuk 🤍</p>
+<input placeholder="Nama lengkap">
+<input placeholder="Tanggal lahir">
+<input placeholder="Tanggal jadian">
+<input placeholder="Nama pasangan">
+<button class="next" onclick="nextSlide()">Masuk 🤍</button>
+</div>
+
+<!-- SLIDE 2 -->
+<div class="slide">
+<h1>Happy Valentine's Day, do you love me?</h1>
+<p>Jawab dulu yang bener 🥺🥺🤍</p>
+<div id="loveButtons"></div>
+<div class="message" id="loveMessage"></div>
+<button class="next" id="loveNext" disabled onclick="nextSlide()">Lanjut 💌</button>
+</div>
+
+<!-- SLIDE 3 -->
+<div class="slide">
+<h2>🎁 Buka seluruh kotak untuk lanjut 🎁</h2>
+<div class="grid" id="giftGrid"></div>
+<div class="warning" id="giftWarning"></div>
+<button class="next" id="giftNext" disabled onclick="nextSlide()">Lanjut 💖</button>
+</div>
+
+<!-- SLIDE 4 -->
+<div class="slide">
+<h2>🤍 Buka seluruh scratch untuk lanjut 🤍</h2>
+<div id="stretchContainer"></div>
+<div class="warning" id="stretchWarning"></div>
+<button class="next" id="stretchNext" disabled onclick="nextSlide()">Lanjut 💕</button>
+</div>
+
+<!-- SLIDE 5 -->
+<div class="slide">
+<h2>Jawabnya pake hati ya 🤍</h2>
+<p>Jawab 10 soal untuk lanjut</p>
+<div id="questionContainer"></div>
+<div class="warning" id="questionWarning"></div>
+<button class="next" onclick="validateQuestions()">Lanjut 💌</button>
+</div>
+
+<!-- SLIDE 6 -->
+<div class="slide">
+<h2>KLIK YANG BANYAK YA AWAS NGELEK 😝😝😝😝😝</h2>
+<button onclick="nyenyenye()">nyenyenye</button>
+<button class="next" onclick="nextSlide()">Lanjut 💖</button>
+</div>
+
+<!-- SLIDE 7 -->
+<div class="slide">
+<div class="paper">
+<h2>Selamat Hari Valentine 🤍</h2>
+<p>Hari ini bukan hanya tentang cokelat atau bunga. Hari ini tentang kamu. Tentang bagaimana kamu mengisi hidupku dengan warna, tawa, dan ketenangan. Aku bersyukur setiap hari bisa mencintaimu.</p>
+</div>
+
+<div class="paper">
+<h2>Permintaan Maaf 🤍</h2>
+<p>Maaf jika aku belum sempurna. Maaf jika ada kata yang melukai atau sikap yang membuatmu sedih. Aku ingin terus belajar menjadi pasangan yang lebih baik untukmu.</p>
+</div>
+
+<div class="paper">
+<h2>Terima Kasih 🤍</h2>
+<p>Terima kasih sudah bertahan, percaya, dan memilihku. Terima kasih sudah membuatku merasa dicintai. Kamu adalah hadiah terindah dalam hidupku.</p>
+</div>
+
+<button class="next" onclick="nextSlide()">Menuju Akhir 💕</button>
+</div>
+
+<!-- SLIDE 8 -->
+<div class="slide">
+<button onclick="showEnding()">End</button>
+<div id="ending"></div>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded",function(){
+
+const slides=document.querySelectorAll(".slide");
+let current=0;
+window.nextSlide=function(){
+slides[current].classList.remove("active");
+current++;
+slides[current].classList.add("active");
+};
+
+/* LOVE BUTTON */
+const sadTexts=[
+"Hatiku sedikit retak 💔",
+"Aku kira kamu bercanda... 😢",
+"Sedih banget rasanya...",
+"Yakin itu pilihanmu...? 💔",
+"Aku tetap cinta kamu 🤍"
+];
+
+const secret=Math.floor(Math.random()*50);
+let found=false;
+
+for(let i=0;i<50;i++){
+let btn=document.createElement("button");
+btn.textContent="No";
+btn.onclick=function(){
+if(i===secret){
+btn.textContent="Yes 🤍";
+document.getElementById("loveMessage").textContent="aku tau kamu mencintaiku 🤍🤍";
+found=true;
+document.getElementById("loveNext").disabled=false;
+}else{
+document.getElementById("loveMessage").textContent=
+sadTexts[Math.floor(Math.random()*sadTexts.length)];
+}
+};
+document.getElementById("loveButtons").appendChild(btn);
+}
+
+/* GIFTS */
+let giftOpened=0;
+const loveWords=[
+"Aku sayang kamu.","Kamu bahagiaku.","Kamu rumahku.","Selalu pilih aku ya.","Jangan tinggalkan aku.","Kamu segalanya.","Kamu istimewa.","Aku bangga padamu.","Senyummu favoritku.","Peluk aku selalu.","Aku nyaman denganmu.",
+"Kamu tenangku.","Kamu manis banget.","Kamu manis banget.","Terima kasih ya.","Aku butuh kamu.","Kamu terbaik.","Jangan berubah ya.","Aku rindu kamu.","Kamu lucu banget.","Aku bahagia.","Kamu alasan senyumku.","Cintaku cuma kamu.",
+"Kamu berharga.","Kamu kuat banget.","Aku percaya kamu.","Kamu spesial.","Aku di sini.","Selalu bersama ya.","Kamu cintaku.","Kamu indah.","Kamu sabarku.","Kamu penyemangatku.","Jangan menyerah ya.","Aku dukung kamu.",
+"Kamu milikku 🤍.","Aku milikmu 🤍.","Kamu segalanya bagiku.","Kamu prioritas.","Aku setia.","Kamu favoritku.","Cuma kamu.","Aku bersyukur.","Kamu impianku.","Kamu penyempurna hariku.","Aku bangga jadi milikmu.",
+"Kamu cahaya hidupku.","Selalu jaga aku ya.","Aku selalu memilihmu.","Kamu tak tergantikan.","Aku cinta kamu ❤️."
+];
+
+for(let i=0;i<50;i++){
+let gift=document.createElement("div");
+gift.className="gift";
+gift.textContent="🎁";
+gift.onclick=function(){
+if(!gift.classList.contains("open")){
+gift.classList.add("open");
+gift.textContent=loveWords[i%loveWords.length];
+giftOpened++;
+if(giftOpened===50){
+document.getElementById("giftNext").disabled=false;
+}else{
+document.getElementById("giftWarning").textContent=
+"Buka seluruh kotak untuk lanjut 🤍";
+}
+}
+};
+document.getElementById("giftGrid").appendChild(gift);
+}
+
+/* STRETCH */
+let stretchOpened=0;
+for(let i=0;i<10;i++){
+let div=document.createElement("div");
+div.className="stretch";
+div.textContent="Klik untuk buka 🤍";
+div.onclick=function(){
+if(div.textContent==="Klik untuk buka 🤍"){
+div.textContent="Kamu adalah bahagiaku yang tak tergantikan 💕,Aku mencintaimu hari ini dan seterusnya 🤍,I LOVE YOU NANAT";
+stretchOpened++;
+if(stretchOpened===10){
+document.getElementById("stretchNext").disabled=false;
+}else{
+document.getElementById("stretchWarning").textContent=
+"Buka seluruh scratch untuk lanjut 🤍";
+}
+}
+};
+document.getElementById("stretchContainer").appendChild(div);
+}
+
+/* QUESTIONS */
+const questions=[
+"Apakah kamu merasa nyaman bersamaku?",
+"Apakah aku membuatmu tersenyum?",
+"Hal apa dariku yang membuatmu menyukaiku?",
+"Apakah kamu percaya padaku?",
+"Apakah kamu mau selalu bersamaku?",
+"Apakah aku sudah cukup untukmu?",
+"Apakah kamu takut kehilanganku?",
+"Jika kita berbeda pendapat, apakah kamu tetap memilihku?",
+"Apakah kamu bersyukur bertemu denganku?",
+"Apa arti diriku dalam hidupmu?"
+];
+
+let textareas=[];
+questions.forEach(q=>{
+let p=document.createElement("p");
+p.textContent=q;
+let t=document.createElement("textarea");
+textareas.push(t);
+document.getElementById("questionContainer").appendChild(p);
+document.getElementById("questionContainer").appendChild(t);
+});
+
+window.validateQuestions=function(){
+let filled=textareas.every(t=>t.value.trim()!=="");
+if(filled){
+nextSlide();
+}else{
+document.getElementById("questionWarning").textContent=
+"Jawab 10 soal untuk lanjut 🤍";
+}
+};
+
+/* NYENYENYE */
+window.nyenyenye=function(){
+let texts=["I LOVE YOU 🤍🤍","😝😝","❤️❤️❤️❤️❤️"];
+for(let i=0;i<35;i++){
+let span=document.createElement("div");
+span.className="floating";
+span.textContent=texts[i%3];
+span.style.left=Math.random()*100+"vw";
+span.style.top="80vh";
+document.body.appendChild(span);
+setTimeout(()=>span.remove(),3000);
+}
+};
+
+/* END */
+window.showEnding=function(){
+document.getElementById("ending").innerHTML=
+"<div class='bigFlower'>🌹💐🌷🥀🪻🪷🌺🌸🌼🌻</div><div class='bigText'>KAELL SAYANGG NATASHA BENITA OPHELIA</div>";
+};
+
+});
+</script>
+
+</body>
+</html>
